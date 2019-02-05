@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require('passport');
 const authRoutes = express.Router();
 const User = require("../models/User");
+const Message = require("../models/Message");
 const mongoose = require("mongoose")
 
 
@@ -30,12 +31,26 @@ authRoutes.post("/login", (req,res,next)=>{
  myFunction(req,res,next)
 
 });
+// CREATE MESSAGE 
+// authRoutes.post("/message", (req,res,next)=>{
+//   const {message}= req.body;
+//   Message.create ({message})
+//   .then((newMessage)=>{
+//     res.json(newMessage);
+//   })
+//   .catch((err)=>{
+//     next(err);
+//   })
+// })
+
 
 authRoutes.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const email = req.body.email;
   const role = req.body.role;
+  const message = req.body.message;
+
 
   if (username === "" || password === "") {
     //new
@@ -60,7 +75,8 @@ authRoutes.post("/signup", (req, res, next) => {
       username,
       password: hashPass, 
       email, 
-      role:"admin"
+      role:"admin",
+      message
 
     
     });

@@ -2,14 +2,8 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const articleSchema = new Schema({
-  title: String,
-  date: String, 
-  description : String, 
-  imageUrl : String, 
-  type : { 
-    type: String,
-    enum : ["bags", "teeshirt", "pants"]
-  } 
+  creator: String,
+  description : String
 }, {
   timestamps: {
     createdAt: 'created_at',
